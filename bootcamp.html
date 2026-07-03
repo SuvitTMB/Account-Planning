@@ -65,6 +65,10 @@
                 <span class="font-bold text-white text-sm tracking-wide">Portfolio & Account Planning</span>
             </div>
             <div class="flex items-center gap-2">
+                <div id="headerUserInfo" class="hidden bg-orange-500 text-white text-[12px] font-bold px-3 py-1 rounded-lg flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-user"></i>
+                    <span id="headerUserName">-</span>
+                </div>
                 <button onclick="logoutPlayer()" id="btnLogoutPlayer"
                     class="hidden text-[12px] font-bold text-white hover:bg-blue-700 bg-blue-900 border border-blue-700/50 px-2.5 py-1 rounded-lg transition flex items-center gap-1">
                     <i class="fa-solid fa-right-from-bracket"></i> ลงทะเบียนใหม่
@@ -114,7 +118,7 @@
                     <!-- Row 2: Competitor Team Info -->
                     <div class="space-y-1 py-5" id="regNameContainer">
                         <label class="block text-xs font-bold text-slate-650">ชื่อทีม หรือ
-                            ชื่อผู้แข่งขัน</label>
+                            ชื่อ-นามสกุล RM</label>
                         <input type="text" id="inputRegName" placeholder="กรอกชื่อทีม หรือ ชื่อผู้แข่งขัน"
                             class="w-[400px] text-center bg-slate-100 border border-slate-200 rounded-xl py-2 px-3 text-xs font-semibold focus:border-brand-500 focus:bg-white outline-none transition text-slate-800"
                             oninput="validateRegForm()">
