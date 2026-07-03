@@ -1,9 +1,1 @@
-window.firebaseConfig = window.firebaseConfig || 
-{
-        apiKey: "AIzaSyAciknEYhZU7AwOdfYytC1t_AnW2Ee11us",
-        authDomain: "faifah-ttb.firebaseapp.com",
-        projectId: "faifah-ttb",
-        storageBucket: "faifah-ttb.appspot.com",
-        messagingSenderId: "842980876200",
-        appId: "1:842980876200:web:f33bfad2ccbf263075079d"
-};
+function _0x484a(){var _0x591742=['faifah-ttb.firebaseapp.com','554988zQtwQz','250aiBruA','628904xZOtmw','1765197tFdWkp','20bcatqf','150514tBLHdm','154Jyivbc','842980876200','firebaseConfig','faifah-ttb','10PNwgBS','7126184pUviJj','AIzaSyAciknEYhZU7AwOdfYytC1t_AnW2Ee11us','18165oUopSl','1:842980876200:web:f33bfad2ccbf263075079d','2760036WzLRLL','7qfHnHM'];_0x484a=function(){return _0x591742;};return _0x484a();}var _0x182586=_0x1180;function _0x1180(_0x3fc0dc,_0x93d52){_0x3fc0dc=_0x3fc0dc-0x18c;var _0x484a43=_0x484a();var _0x1180c5=_0x484a43[_0x3fc0dc];return _0x1180c5;}(function(_0x2d8aa,_0x2b7fe9){var _0x479bc4=_0x1180,_0x112393=_0x2d8aa();while(!![]){try{var _0x423a09=-parseInt(_0x479bc4(0x18c))/0x1+parseInt(_0x479bc4(0x19a))/0x2*(parseInt(_0x479bc4(0x194))/0x3)+-parseInt(_0x479bc4(0x19b))/0x4*(parseInt(_0x479bc4(0x191))/0x5)+-parseInt(_0x479bc4(0x196))/0x6*(-parseInt(_0x479bc4(0x197))/0x7)+parseInt(_0x479bc4(0x192))/0x8+parseInt(_0x479bc4(0x19c))/0x9*(-parseInt(_0x479bc4(0x19d))/0xa)+parseInt(_0x479bc4(0x18d))/0xb*(-parseInt(_0x479bc4(0x199))/0xc);if(_0x423a09===_0x2b7fe9)break;else _0x112393['push'](_0x112393['shift']());}catch(_0x85ecaf){_0x112393['push'](_0x112393['shift']());}}}(_0x484a,0x93338),window['firebaseConfig']=window[_0x182586(0x18f)]||{'apiKey':_0x182586(0x193),'authDomain':_0x182586(0x198),'projectId':_0x182586(0x190),'storageBucket':'faifah-ttb.appspot.com','messagingSenderId':_0x182586(0x18e),'appId':_0x182586(0x195)});
