@@ -101,6 +101,14 @@
                 class="py-3 px-1 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold flex items-center gap-2 transition-all">
                 <i class="fa-solid fa-users"></i> ผู้เข้าร่วมกิจกรรม
             </button>
+            <button onclick="switchTab('random')" id="tabBtn-random"
+                class="py-3 px-1 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold flex items-center gap-2 transition-all">
+                <i class="fa-solid fa-shuffle"></i> ระบบสุ่มเลือก
+            </button>
+            <button onclick="switchTab('timer')" id="tabBtn-timer"
+                class="py-3 px-1 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold flex items-center gap-2 transition-all">
+                <i class="fa-solid fa-stopwatch"></i> จับเวลา
+            </button>
         </div>
 
         <!-- ================= TAB: ROUND MANAGEMENT ================= -->
@@ -407,6 +415,151 @@
                 </div>
             </div>
         </section>
+
+        <!-- ================= TAB: RANDOM TEAM PICKER ================= -->
+        <section id="tab-content-random" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div
+                    class="flex flex-col md:flex-row md:items-center justify-between mb-4 border-b border-slate-100 pb-3 gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+                            <i class="fa-solid fa-shuffle"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-base">ระบบสุ่มเลือกทีม</h2>
+                            <p class="text-xs text-slate-500">สุ่มเลือกทีมจากรายชื่อทีมในรอบกิจกรรมที่เลือก</p>
+                        </div>
+                    </div>
+                    <!-- Reset icon + Round dropdown -->
+                    <div class="flex items-center gap-2 self-start md:self-auto">
+                        <span class="text-xs font-bold text-slate-500">รอบกิจกรรม:</span>
+                        <select id="randomRoundSelect" onchange="changeRandomRound(this.value)"
+                            title="เลือกรอบกิจกรรม" aria-label="เลือกรอบกิจกรรม"
+                            class="bg-slate-50 border border-slate-200 rounded-xl py-1.5 px-3 font-bold text-xs outline-none focus:border-indigo-500 text-slate-700 min-w-[180px] shadow-sm transition-all">
+                            <option value="">-- เลือกรอบกิจกรรม --</option>
+                        </select>
+                        <button type="button" onclick="resetRandomSelection()" id="btnResetRandom"
+                            title="Reset รายการทีมที่ถูกเลือก"
+                            class="w-8 h-8 rounded-lg border border-slate-200 bg-slate-50 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 text-slate-500 flex items-center justify-center transition shrink-0">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Team name boxes -->
+                <div id="randomTeamsContainer" class="flex flex-wrap gap-3 min-h-[120px] py-2 content-start">
+                    <div class="text-center py-10 text-slate-400 w-full text-xs">--
+                        กรุณาเลือกรอบกิจกรรมเพื่อแสดงรายชื่อทีม --</div>
+                </div>
+
+                <!-- Random pick button -->
+                <div class="flex justify-center pt-4 mt-2 border-t border-slate-100">
+                    <button type="button" onclick="startRandomPick()" id="btnRandomPick"
+                        class="py-2.5 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-sm transition shadow-md shadow-indigo-600/20 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-dice"></i> สุ่มเลือกทีม
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: COUNTDOWN TIMER ================= -->
+        <section id="tab-content-timer" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-4 border-b border-slate-100 pb-3">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">ระบบจับเวลาถอยหลัง</h2>
+                        <p class="text-xs text-slate-500">กำหนดเวลา เริ่มจับเวลา หยุด หรือ Reset
+                            เพื่อเริ่มจับเวลาใหม่</p>
+                    </div>
+                </div>
+
+                <!-- Time setting box -->
+                <div
+                    class="flex flex-col sm:flex-row items-start sm:items-end justify-center gap-4 bg-slate-50/60 border border-slate-200 rounded-2xl p-5">
+                    <div class="flex items-end gap-3">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-600 mb-1 uppercase text-center">นาที
+                                (Minutes)</label>
+                            <input type="number" id="timerMinutesInput" value="5" min="0" max="180"
+                                title="กำหนดนาที" aria-label="กำหนดนาที"
+                                class="w-24 bg-white border border-slate-200 rounded-xl py-2.5 px-3 font-black text-xl focus:border-indigo-500 outline-none text-slate-800 text-center">
+                        </div>
+                        <span class="font-black text-2xl text-slate-400 pb-1.5">:</span>
+                        <div>
+                            <label
+                                class="block text-[10px] font-bold text-slate-600 mb-1 uppercase text-center">วินาที
+                                (Seconds)</label>
+                            <input type="number" id="timerSecondsInput" value="0" min="0" max="59"
+                                title="กำหนดวินาที" aria-label="กำหนดวินาที"
+                                class="w-24 bg-white border border-slate-200 rounded-xl py-2.5 px-3 font-black text-xl focus:border-indigo-500 outline-none text-slate-800 text-center">
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 self-center sm:self-end sm:pb-0.5">
+                        <button type="button" onclick="startCountdownTimer()" id="btnTimerStart"
+                            class="py-2.5 px-5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition shadow-md shadow-emerald-600/10 flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-play"></i> เริ่มจับเวลา
+                        </button>
+                        <button type="button" onclick="stopCountdownTimer()" id="btnTimerStop"
+                            class="py-2.5 px-5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-xs transition shadow-md shadow-amber-500/10 flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-pause"></i> หยุดเวลา
+                        </button>
+                        <button type="button" onclick="resetCountdownTimer()" id="btnTimerReset"
+                            class="py-2.5 px-5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition border border-slate-200 flex items-center gap-1.5">
+                            <i class="fa-solid fa-rotate-left"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Countdown display box (black background) -->
+                <div class="relative bg-black rounded-2xl border border-slate-800 mt-6 p-6 min-h-[260px] flex items-center justify-center shadow-inner">
+                    <!-- Font size controls (top right) -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                        <button type="button" onclick="adjustTimerFontSize(0.2)" title="ขยายตัวอักษร"
+                            class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                        </button>
+                        <button type="button" onclick="adjustTimerFontSize(-0.2)" title="ลดตัวอักษร"
+                            class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition">
+                            <i class="fa-solid fa-magnifying-glass-minus"></i>
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <div id="timerCountdownDisplay"
+                            class="font-black text-white tabular-nums tracking-wider leading-none transition-colors text-[96px]">
+                            05:00</div>
+                        <div class="text-slate-400 text-[11px] font-bold mt-3 tracking-widest uppercase">นาที :
+                            วินาที</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= RANDOM RESULT LIGHTBOX ================= -->
+        <div id="randomResultLightbox"
+            class="hidden fixed inset-0 bg-slate-900/80 z-[99999] flex items-center justify-center p-3 animate-fade-in">
+            <div class="bg-white rounded-3xl max-w-md w-full p-7 shadow-2xl border border-slate-100 space-y-4">
+                <div class="text-center space-y-2">
+                    <div
+                        class="w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto text-xl shadow-inner">
+                        <i class="fa-solid fa-dice"></i>
+                    </div>
+                    <h3 class="font-black text-slate-900 text-sm">ผลการสุ่มเลือกทีม</h3>
+                    <p class="text-[10px] text-slate-400">ทีมที่ระบบสุ่มเลือกได้ในครั้งนี้</p>
+                </div>
+                <div id="randomResultTeamName"
+                    class="py-5 px-3 bg-indigo-50 border border-indigo-100 rounded-2xl text-indigo-700 font-black text-xl text-center break-words">
+                    -</div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeRandomResultLightbox()"
+                        class="w-1/2 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition text-sm">ยกเลิก</button>
+                    <button type="button" onclick="confirmRandomTeam()" id="btnConfirmRandomTeam"
+                        class="w-1/2 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition shadow-md shadow-indigo-600/10 text-sm disabled:opacity-50 disabled:cursor-not-allowed">เลือกทีมนี้</button>
+                </div>
+            </div>
+        </div>
 
         <!-- ================= EDIT COMPETITOR LIGHTBOX ================= -->
         <div id="editCompetitorLightbox"
@@ -1060,7 +1213,7 @@
         </div>
 
     </main>
-    <script src="js/admin.js?v=20260701c"></script>
+    <script src="js/admin.js?v=20260714d"></script>
 </body>
 
 </html>
